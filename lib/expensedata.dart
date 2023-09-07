@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'expense_item.dart';
 
-class expensedata{
+class expensedata extends ChangeNotifier{
 
   List<ExpenseItem> overallexpenselist=[];
 
@@ -12,9 +14,10 @@ class expensedata{
   void addnewexpense(ExpenseItem newexpense)
   {
     overallexpenselist.add(newexpense);
+    notifyListeners();
   }
 
-  void deleteexpense(ExpenseItem expense)
+  void deletexpense(ExpenseItem expense)
   {
     overallexpenselist.remove(expense);
   }

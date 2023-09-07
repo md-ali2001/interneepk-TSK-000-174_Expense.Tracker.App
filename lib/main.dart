@@ -1,19 +1,12 @@
+import 'package:expensetracker/expense_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'expensedata.dart';
 
 
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(home:HomeScreen());
-  }
-}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({ super.key });
@@ -28,7 +21,9 @@ class _HomeScreen extends State<HomeScreen> {
 
   void save()
   {
-
+    ExpenseItem newexpense=ExpenseItem(name: newexpensename.text, amount: newexpenseamount.text);
+    Provider.of<expensedata>(context,listen:false).addnewexpense(newexpense);
+    Navigator.pop(context);
   }
 
   void cancel()
@@ -62,14 +57,23 @@ class _HomeScreen extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Consumer<expensedata>(
+      builder:(context,value,child)=>Scaffold(
       backgroundColor: Colors.grey,
 
 
       floatingActionButton: FloatingActionButton(onPressed:
         addnewexpense,
 
-        child: Icon(Icons.add),),
-    );
+        child: Icon(Icons.add),
+
+      ),
+      
+      body: ListView.builder(
+        itemCount: value.getallexpenselist().length,
+
+        itemBuilder:(context,index)=>ListTile(title: Text(value.getallexpenselist()[index].name)
+            ,trailing: Text('Rs.'+value.getallexpenselist()[index].amount),
+    ))));
   }
 }
