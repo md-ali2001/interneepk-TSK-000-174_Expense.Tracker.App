@@ -23,9 +23,41 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
+  final newexpensename=TextEditingController();
+  final newexpenseamount=TextEditingController();
+
+  void save()
+  {
+
+  }
+
+  void cancel()
+  {
+
+  }
+
   void addnewexpense()
   {
-    showDialog(context: context, builder: (context)=>AlertDialog(title: Text('Add New Expense'),));
+    showDialog(context: context, builder: (context)=>AlertDialog(title: Text('Add New Expense'),
+    content: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        TextField(controller: newexpensename,),
+        TextField(controller: newexpenseamount,)
+
+      ],
+    ),
+      actions: [
+        MaterialButton(onPressed: save,
+        child: Text('Save'),
+        ),
+
+        MaterialButton(onPressed: cancel,
+          child: Text('Cancel'),
+        )
+
+      ],
+    ));
   }
 
   @override
