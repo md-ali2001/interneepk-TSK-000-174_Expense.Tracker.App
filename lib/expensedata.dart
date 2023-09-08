@@ -49,4 +49,32 @@ class expensedata extends ChangeNotifier{
     }
   }
 
+
+  Map<String,double> dailytotalexpense()
+  {
+    Map<String,double> dailyexpensesummary={};
+
+    for(var expense in overallexpenselist)
+      {
+        String day=expense.day;
+        double amount=double.parse(expense.amount);
+        if(dailyexpensesummary.containsKey(day))
+          {
+            double currentamount=dailyexpensesummary[day]!;
+            currentamount+=amount;
+          }
+        else{
+          dailyexpensesummary.addAll({day:amount});
+        }
+
+
+
+
+
+      }
+    return dailyexpensesummary;
+  }
+
+
+
 }

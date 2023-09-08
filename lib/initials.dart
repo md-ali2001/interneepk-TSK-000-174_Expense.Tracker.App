@@ -20,6 +20,7 @@ class initial extends StatelessWidget{
     // TODO: implement build
     return ChangeNotifierProvider(create: (context) =>expensedata(),
       builder: (context,child)=>const MaterialApp(
+        debugShowCheckedModeBanner: false,
         home:HomeScreen(),
       ),
 

@@ -18,29 +18,39 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreen extends State<HomeScreen> {
   final newexpensename=TextEditingController();
   final newexpenseamount=TextEditingController();
+  final newexpenseday=TextEditingController();
 
   void save()
   {
-    ExpenseItem newexpense=ExpenseItem(name: newexpensename.text, amount: newexpenseamount.text);
+    ExpenseItem newexpense=ExpenseItem(name: newexpensename.text, amount: newexpenseamount.text, day: newexpenseday.text);
     Provider.of<expensedata>(context,listen:false).addnewexpense(newexpense);
+    newexpensename.clear();
+    newexpenseamount.clear();
+    newexpenseday.clear();
+    
+    
     Navigator.pop(context);
+
   }
 
   void cancel()
   {
-
+    Navigator.pop(context);
   }
 
   void addnewexpense()
   {
     showDialog(context: context, builder: (context)=>AlertDialog(title: Text('Add New Expense'),
-    content: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        TextField(controller: newexpensename,),
-        TextField(controller: newexpenseamount,)
+    content: SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextField(controller: newexpensename),
+          TextField(controller: newexpenseamount),
+          TextField(controller: newexpenseday)
 
-      ],
+        ],
+      ),
     ),
       actions: [
         MaterialButton(onPressed: save,
