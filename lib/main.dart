@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'expensedata.dart';
+import 'expensesummary.dart';
+import 'expensetile.dart';
 
 
 
@@ -79,11 +81,20 @@ class _HomeScreen extends State<HomeScreen> {
 
       ),
       
-      body: ListView.builder(
+      body:
+      ListView(
+        children: [
+          expensesummary(),
+
+
+
+
+      ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: value.getallexpenselist().length,
 
-        itemBuilder:(context,index)=>ListTile(title: Text(value.getallexpenselist()[index].name)
-            ,trailing: Text('Rs.'+value.getallexpenselist()[index].amount),
-    ))));
+        itemBuilder:(context,index)=>expensetile(name: value.getallexpenselist()[index].name, amount: value.getallexpenselist()[index].amount
+    ))])));
   }
 }

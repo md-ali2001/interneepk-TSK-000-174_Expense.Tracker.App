@@ -3,6 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class bargraph extends StatelessWidget{
+  final double? maxY;
   final double mon;
   final double tue;
   final double wed;
@@ -12,7 +13,7 @@ class bargraph extends StatelessWidget{
   final double sun;
 
 
-  const bargraph({super.key, required this.mon, required this.tue, required this.wed, required this.thu, required this.fri, required this.sat, required this.sun});
+  const bargraph({super.key, required this.mon, required this.tue, required this.wed, required this.thu, required this.fri, required this.sat, required this.sun, this.maxY});
 
   @override
   Widget build(BuildContext context) {
